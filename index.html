@@ -269,13 +269,13 @@ a {
     }
 
     .featured-grid {
-        column-count: 2;
-        column-gap: 8px;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 8px;
     }
 
     .featured-item {
-        break-inside: avoid;
-        margin-bottom: 8px;
+        overflow: hidden;
     }
 
     .page-header {
@@ -313,8 +313,6 @@ a {
         gap: 8px;
     }
 }
-    </style>
-</head>
 <!-- ================================================== 首頁 ================================================== -->
 
 <main id="home" class="home">
