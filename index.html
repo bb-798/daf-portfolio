@@ -81,14 +81,13 @@ a {
 /* ================================================== 首頁作品預覽 ================================================== */
 
 .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-flow: dense;
-    gap: 18px;
-    align-items: start;
+    column-count: 2;
+    column-gap: 18px;
 }
 
 .featured-item {
+    break-inside: avoid;
+    margin-bottom: 18px;
     overflow: hidden;
 }
 
@@ -101,12 +100,6 @@ a {
 
 .featured-item:hover img {
     transform: scale(1.02);
-}
-/* ================================================== 首頁主圖 ================================================== */
-
-.featured-item:nth-child(4) {
-    grid-column: span 2;
-    grid-row: span 2;
 }
 /* ================================================== 內頁 ================================================== */
 
@@ -275,16 +268,10 @@ a {
         padding-left: 0;
     }
 
-   .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-}
-
-.featured-item:nth-child(4) {
-    grid-column: span 2;
-    grid-row: span 2;
-}
+    .featured-grid {
+        column-count: 2;
+        column-gap: 8px;
+    }
 
     .featured-item {
         break-inside: avoid;
