@@ -225,23 +225,23 @@ a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
+    align-items: start;
 }
 
 .work-item {
     overflow: hidden;
-    background: #EEEEEE;
 }
 
 .work-item img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 0.45s ease;
 }
 
 .work-item:hover img {
     transform: scale(1.025);
 }
-
 /* ================================================== 手機版 ================================================== */
 
 @media (max-width: 700px) {
@@ -314,9 +314,9 @@ a {
         margin-bottom: 48px;
     }
 
-    .work-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+   .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
     }
 }
 </style>
