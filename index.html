@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品集</title>
+
+<style>
+/* ================================================== 基礎設定 ================================================== */
+
+:root {
+    --ink: #111111;
+    --line: #D8D8D8;
+    --paper: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family:
+        "Noto Sans TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        sans-serif;
+    font-weight: 400;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ================================================== 首頁 ================================================== */
+
+.home {
+    width: min(1180px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 48px 0 80px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.nav a {
+    padding: 0 22px;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    transition: opacity 0.2s ease;
+}
+
+.nav a + a {
+    border-left: 1px solid var(--line);
+}
+
+.nav a:hover {
+    opacity: 0.5;
+}
+
+/* ================================================== 首頁作品預覽 ================================================== */
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr 1fr;
+    grid-template-rows: 320px 260px;
+    gap: 14px;
+}
+
+.featured-item {
+    overflow: hidden;
+    background: #EEEEEE;
+}
+
+.featured-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.featured-item:hover img {
+    transform: scale(1.025);
+}
+
+.featured-item:nth-child(1) {
+    grid-row: span 2;
+}
+
+.featured-item:nth-child(4) {
+    grid-column: span 2;
+}
+
+/* ================================================== 內頁 ================================================== */
+
+.page {
+    display: none;
+    width: min(1180px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 48px 0 80px;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.page-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.back {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    transition: opacity 0.2s ease;
+}
+
+.back:hover {
+    opacity: 0.5;
+}
+
+/* ================================================== 個人資訊 ================================================== */
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 430px) 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.profile-image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #EEEEEE;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin-bottom: 22px;
+}
+
+.profile-school {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.profile-description {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    margin-bottom: 34px;
+}
+
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-link {
+    width: fit-content;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 3px;
+    transition: opacity 0.2s ease;
+}
+
+.profile-link:hover {
+    opacity: 0.5;
+}
+
+/* ================================================== 攝影作品 ================================================== */
+
+.theme {
+    margin-bottom: 64px;
+}
+
+.theme:last-child {
+    margin-bottom: 0;
+}
+
+.theme-title {
+    margin: 0 0 20px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.work-item {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #EEEEEE;
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.work-item:hover img {
+    transform: scale(1.025);
+}
+
+/* ================================================== 手機版 ================================================== */
+
+@media (max-width: 700px) {
+
+    .home,
+    .page {
+        width: min(100% - 32px, 1180px);
+        padding-top: 28px;
+        padding-bottom: 50px;
+    }
+
+    .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        margin-bottom: 30px;
+        padding-bottom: 4px;
+    }
+
+    .nav a {
+        flex: 0 0 auto;
+        padding: 0 14px;
+        font-size: 13px;
+    }
+
+    .nav a:first-child {
+        padding-left: 0;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 190px 190px;
+        gap: 8px;
+    }
+
+    .featured-item:nth-child(1) {
+        grid-row: span 2;
+    }
+
+    .featured-item:nth-child(4) {
+        grid-column: span 2;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .page-title {
+        font-size: 19px;
+    }
+
+    .profile-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .profile-image {
+        max-width: 100%;
+    }
+
+    .profile-name {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .profile-description {
+        margin-bottom: 25px;
+    }
+
+    .theme {
+        margin-bottom: 48px;
+    }
+
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================================================== 首頁 ================================================== -->
+
+<main id="home" class="home">
+
+    <nav class="nav">
+        <a href="#" onclick="showPage('profile'); return false;">個人資訊</a>
+        <a href="#" onclick="showPage('collab'); return false;">合作拍攝</a>
+        <a href="#" onclick="showPage('self'); return false;">自己拍攝</a>
+        <a href="#" onclick="showPage('other'); return false;">其他</a>
+    </nav>
+
+    <section class="featured-grid">
+        <div class="featured-item">
+            <img src="images/featured-01.jpg" alt="">
+        </div>
+        <div class="featured-item">
+            <img src="images/featured-02.jpg" alt="">
+        </div>
+        <div class="featured-item">
+            <img src="images/featured-03.jpg" alt="">
+        </div>
+        <div class="featured-item">
+            <img src="images/featured-04.jpg" alt="">
+        </div>
+        <div class="featured-item">
+            <img src="images/featured-05.jpg" alt="">
+        </div>
+    </section>
+
+</main>
+
+<!-- ================================================== 個人資訊 ================================================== -->
+
+<section id="profile" class="page">
+
+    <header class="page-header">
+        <h1 class="page-title">個人資訊</h1>
+        <a href="#" class="back" onclick="showHome(); return false;">返回</a>
+    </header>
+
+    <div class="profile-layout">
+
+        <div class="profile-image">
+            <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="profile-info">
+            <h2 class="profile-name">施采伶</h2>
+
+            <div class="profile-school">
+                東吳大學日文系四年級
+            </div>
+
+            <div class="profile-description">
+                人像視覺呈現｜娛樂帳號經營
+            </div>
+
+            <div class="profile-links">
+                <a class="profile-link" href="mailto:1@">mimin59606162@gmail.com</a>
+                <a class="profile-link" href="#" target="_blank">Instagram</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================================================== 合作拍攝 ================================================== -->
+
+<section id="collab" class="page">
+
+    <header class="page-header">
+        <h1 class="page-title">合作拍攝</h1>
+        <a href="#" class="back" onclick="showHome(); return false;">返回</a>
+    </header>
+
+    <div class="theme">
+        <h2 class="theme-title">主題1</h2>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/collab-01.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/collab-02.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/collab-03.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="theme">
+        <h2 class="theme-title">主題2</h2>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/collab-04.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/collab-05.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/collab-06.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ================================================== 自己拍攝 ================================================== -->
+
+<section id="self" class="page">
+
+    <header class="page-header">
+        <h1 class="page-title">自己拍攝</h1>
+        <a href="#" class="back" onclick="showHome(); return false;">返回</a>
+    </header>
+
+    <div class="theme">
+        <h2 class="theme-title">主題1</h2>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/self-01.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/self-02.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/self-03.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="theme">
+        <h2 class="theme-title">主題2</h2>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/self-04.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/self-05.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/self-06.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ================================================== 其他 ================================================== -->
+
+<section id="other" class="page">
+
+    <header class="page-header">
+        <h1 class="page-title">其他</h1>
+        <a href="#" class="back" onclick="showHome(); return false;">返回</a>
+    </header>
+
+    <div class="theme">
+        <h2 class="theme-title">主題1</h2>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/other-01.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/other-02.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/other-03.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="theme">
+        <h2 class="theme-title">主題2</h2>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/other-04.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/other-05.jpg" alt="">
+            </div>
+            <div class="work-item">
+                <img src="images/other-06.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ================================================== JavaScript ================================================== -->
+
+<script>
+/* ================================================== 頁面切換 ================================================== */
+
+function showPage(pageId) {
+    document.getElementById("home").style.display = "none";
+
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+/* ================================================== 返回首頁 ================================================== */
+
+function showHome() {
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("home").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
