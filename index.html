@@ -81,13 +81,13 @@ a {
 /* ================================================== 首頁作品預覽 ================================================== */
 
 .featured-grid {
-    column-count: 2;
-    column-gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
 }
 
 .featured-item {
-    break-inside: avoid;
-    margin-bottom: 18px;
     overflow: hidden;
 }
 
@@ -635,6 +635,41 @@ function showHome() {
         behavior: "smooth"
     });
 }
+/* ================================================== 首頁瀑布流 ================================================== */
+
+function masonryFeatured() {
+    const grid = document.querySelector('.featured-grid');
+    if (!grid) return;
+
+    const items = [...grid.querySelectorAll('.featured-item')];
+    const columns = window.innerWidth <= 700 ? 2 : 2;
+    const gap = window.innerWidth <= 700 ? 8 : 18;
+
+    grid.style.display = 'block';
+    grid.style.position = 'relative';
+
+    const gridWidth = grid.clientWidth;
+    const columnWidth = (gridWidth - gap * (columns - 1)) / columns;
+    const heights = new Array(columns).fill(0);
+
+    items.forEach(item => {
+        item.style.position = 'absolute';
+        item.style.width = `${columnWidth}px`;
+
+        const shortestColumn = heights.indexOf(Math.min(...heights));
+
+        item.style.left = `${shortestColumn * (columnWidth + gap)}px`;
+        item.style.top = `${heights[shortestColumn]}px`;
+
+        heights[shortestColumn] += item.offsetHeight + gap;
+    });
+
+    grid.style.height = `${Math.max(...heights) - gap}px`;
+}
+
+window.addEventListener('load', masonryFeatured);
+window.addEventListener('resize', masonryFeatured);
+    
 </script>
 
 </body>
