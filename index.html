@@ -81,13 +81,13 @@ a {
 /* ================================================== 首頁作品預覽 ================================================== */
 
 .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    align-items: start;
+    column-count: 2;
+    column-gap: 18px;
 }
 
 .featured-item {
+    break-inside: avoid;
+    margin-bottom: 18px;
     overflow: hidden;
 }
 
@@ -268,10 +268,15 @@ a {
         padding-left: 0;
     }
 
-.featured-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-}
+    .featured-grid {
+        column-count: 2;
+        column-gap: 8px;
+    }
+
+    .featured-item {
+        break-inside: avoid;
+        margin-bottom: 8px;
+    }
 
     .page-header {
         margin-bottom: 30px;
@@ -303,16 +308,11 @@ a {
         margin-bottom: 48px;
     }
 
-   .work-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 }
-</style>
-</head>
-
-<body>
-
 <!-- ================================================== 首頁 ================================================== -->
 
 <main id="home" class="home">
