@@ -325,7 +325,32 @@ a {
         grid-column: span 2;
     }
 }
+/* ================================================== 圖片放大檢視 ================================================== */
 
+.image-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.88);
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    cursor: zoom-out;
+}
+
+.image-lightbox.active {
+    display: flex;
+}
+
+.image-lightbox img {
+    max-width: 95vw;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    cursor: default;
+}
 </style>
 </head>
 
@@ -616,8 +641,24 @@ a {
 </section>
 
 <!-- ================================================== JavaScript ================================================== -->
+<!-- ================================================== 圖片放大檢視 ================================================== -->
 
+<div id="imageLightbox" class="image-lightbox" onclick="closeLightbox()">
+    <img id="lightboxImage" src="" alt="" onclick="event.stopPropagation();">
+</div>
 <script>
+    /* ================================================== 圖片放大檢視 ================================================== */
+
+document.querySelectorAll(".work-item img, .featured-item img, .profile-image img").forEach(function(img) {
+    img.addEventListener("click", function() {
+        document.getElementById("lightboxImage").src = this.src;
+        document.getElementById("imageLightbox").classList.add("active");
+    });
+});
+
+function closeLightbox() {
+    document.getElementById("imageLightbox").classList.remove("active");
+}
 /* ================================================== 頁面切換 ================================================== */
 
 function showPage(pageId) {
