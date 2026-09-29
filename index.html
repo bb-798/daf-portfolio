@@ -226,33 +226,28 @@ a {
 }
 
 .work-item {
-    overflow: hidden;
-}
-    
-.other-large {
-    grid-column: span 2;
+    min-width: 0;
 }
 
 .work-item img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.45s ease;
+    transition: opacity 0.25s ease;
 }
+
+/* ================================================== 其他頁特殊比例照片 ================================================== */
+
+.other-large {
+    grid-column: span 2;
+}
+
+/* ================================================== 滑入效果 ================================================== */
 
 .work-item:hover img {
-    transform: scale(1.025);
+    opacity: 0.92;
 }
 
-/* ================================================== 其他頁單張照片調整 ================================================== */
-
-.other-large img {
-    transform: scale(1.3);
-}
-
-.other-large:hover img {
-    transform: scale(1.325);
-}
 /* ================================================== 手機版 ================================================== */
 
 @media (max-width: 700px) {
@@ -282,14 +277,15 @@ a {
     }
 
     .featured-grid {
-    column-count: 2;
-    column-gap: 8px;
-}
+        column-count: 2;
+        column-gap: 8px;
+    }
 
-.featured-item {
-    break-inside: avoid;
-    margin-bottom: 8px;
-}
+    .featured-item {
+        break-inside: avoid;
+        margin-bottom: 8px;
+    }
+
     .page-header {
         margin-bottom: 30px;
     }
@@ -320,9 +316,13 @@ a {
         margin-bottom: 48px;
     }
 
-        .work-grid {
+    .work-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
+    }
+
+    .other-large {
+        grid-column: span 2;
     }
 }
 
@@ -330,7 +330,6 @@ a {
 </head>
 
 <body>
-
 <!-- ================================================== 首頁 ================================================== -->
 <main id="home" class="home">
 
