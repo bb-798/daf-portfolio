@@ -81,13 +81,14 @@ a {
 /* ================================================== 首頁作品預覽 ================================================== */
 
 .featured-grid {
-    column-count: 2;
-    column-gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    align-items: start;
 }
 
 .featured-item {
-    break-inside: avoid;
-    margin-bottom: 18px;
+    min-width: 0;
 }
 
 .featured-item img {
@@ -99,6 +100,12 @@ a {
 
 .featured-item:hover img {
     transform: scale(1.02);
+}
+
+/* ================================================== 首頁大圖 ================================================== */
+
+.featured-large {
+    grid-column: span 2;
 }
 /* ================================================== 內頁 ================================================== */
 
@@ -277,15 +284,13 @@ a {
     }
 
     .featured-grid {
-        column-count: 2;
-        column-gap: 8px;
+        gap: 8px;
     }
 
-    .featured-item {
-        break-inside: avoid;
-        margin-bottom: 8px;
+    .featured-large {
+        grid-column: span 2;
     }
-
+    
     .page-header {
         margin-bottom: 30px;
     }
@@ -319,10 +324,6 @@ a {
     .work-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
-    }
-
-    .other-large {
-        grid-column: span 2;
     }
 }
 /* ================================================== 圖片放大檢視 ================================================== */
@@ -368,7 +369,7 @@ a {
 <p class="home-note">作品皆為本人參與製作之內容，部分為合作拍攝。</p>
     
     <section class="featured-grid">
-        <div class="featured-item other-large">
+        <div class="featured-item featured-large">
             <img src="images/thumb/featured-04.jpg"
                  data-full="images/featured-04.jpg"
                  alt="">
@@ -383,7 +384,7 @@ a {
                  data-full="images/featured-03.jpg"
                  alt="">
         </div>
-        <div class="featured-item other-large">
+        <div class="featured-item featured-large">
             <img src="images/thumb/featured-01.jpg"
                  data-full="images/featured-01.jpg"
                  alt="">
@@ -713,40 +714,6 @@ function showHome() {
         behavior: "smooth"
     });
 }
-/* ================================================== 首頁瀑布流 ================================================== */
-
-function masonryFeatured() {
-    const grid = document.querySelector('.featured-grid');
-    if (!grid) return;
-
-    const items = [...grid.querySelectorAll('.featured-item')];
-    const columns = window.innerWidth <= 700 ? 2 : 2;
-    const gap = window.innerWidth <= 700 ? 8 : 18;
-
-    grid.style.display = 'block';
-    grid.style.position = 'relative';
-
-    const gridWidth = grid.clientWidth;
-    const columnWidth = (gridWidth - gap * (columns - 1)) / columns;
-    const heights = new Array(columns).fill(0);
-
-    items.forEach(item => {
-        item.style.position = 'absolute';
-        item.style.width = `${columnWidth}px`;
-
-        const shortestColumn = heights.indexOf(Math.min(...heights));
-
-        item.style.left = `${shortestColumn * (columnWidth + gap)}px`;
-        item.style.top = `${heights[shortestColumn]}px`;
-
-        heights[shortestColumn] += item.offsetHeight + gap;
-    });
-
-    grid.style.height = `${Math.max(...heights) - gap}px`;
-}
-
-window.addEventListener('load', masonryFeatured);
-window.addEventListener('resize', masonryFeatured);
     
 </script>
 
